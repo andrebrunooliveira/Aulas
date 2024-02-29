@@ -1,29 +1,4 @@
 # Aulas
 Aulas sobre base de dados
 
-Modulo01_Introdução_Bancos de Dados
-Modulo02_Visão Geral e Terminologia 
-Modulo03_Definição de esquemas com SQL
-Modulo04_Modificação de dados com uso da SQL
-Modulo05_Restrições_SQL
-Modulo06_Definição_Restrições_Linguagem_SQL 
-Modulo07_ Álgebra_Relacional parte1
-Modulo08_ Álgebra_Relacional parte2
-Modulo09_ Álgebra_Relacional_Exercicos
-Modulo10a_SQL_SELECT_Basico (até exercícios propostos 2)
-Modulo10b_Juncoes_Multiplas_Tabelas
-Modulo11a_SQL_JOIN
-Modulo11b_SQL_JOINs_exercício_biblioteca
-Modulo12_SQL_JOINs_exercício_biblioteca
-Modulo13_SQL_GROUP_BY
-Modulo14_SQL_Subconsultas
-Modulo15_Normalizacao
-Modulo15_Normalizacao
-Modulo16_SQL_RecursosUteis
-Modulo17_Modelagem_Projeto_BD
-Modulo18_Funções_de_Janela
-Modulo19_BDAnalitico 
-Modulo20_NoSQL
-Modulo21_Avore
-Modulo22_NoSQL_Grafo
 
