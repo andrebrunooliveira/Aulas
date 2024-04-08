@@ -1,0 +1,67 @@
+/*R X R*/
+Select Y.*,X.*
+From R Y, R X;
+
+ /* Selecione os que tem mais de 1 (B)
+ */
+Select DISTINCT Y.*
+From R Y, R X
+where Y.A>X.A AND Y.B=X.B;
+
+/* A - B 
+RETORNA QUEM TEM SOMENTE 1 (B)
+*/
+Select Y.*
+From R Y, R X
+
+EXCEPT
+
+Select DISTINCT Y.*
+From R Y, R X
+where Y.A<>X.A AND Y.B=X.B;
+/*----------------------------------------*/
+
+/*R X R*/
+Select Y.A ,Y.B , X.A AS A1, X.B AS B1
+From R Y, R X; 
+
+/* A = Selecione os que tem mais de 1 (B)
+*/
+Select DISTINCT Y.A ,Y.B
+From R Y, R X 
+where Y.A>X.A AND Y.B=X.B;
+
+/* V_R1 : = A*/
+CREATE VIEW V_R1 AS
+Select DISTINCT Y.A ,Y.B --
+From R Y, R X 
+where Y.A>X.A AND Y.B=X.B;
+
+
+
+/* Selecione os que tem mais de 2 (B), 
+restam os que tem 3 ou mais
+ */
+SELECT DISTINCT Y.A
+FROM V_R1 Y, V_R1 X
+where Y.A>X.A AND Y.B=X.B;
+
+
+/*
+A - B 
+Retorna os que tem EXATAMENTE 2 (B)
+*/
+
+Select distinct B 
+From V_R1
+
+except
+
+SELECT DISTINCT Y.A
+FROM V_R1 Y, V_R1 X
+where Y.A>X.A AND Y.B=X.B;
+
+
+
+
+
