@@ -1,0 +1,83 @@
+CREATE TABLE Pais ( 
+sigla CHAR(2) NOT NULL, 
+nome VARCHAR(60) NOT NULL, 
+PRIMARY KEY (sigla) 
+); 
+INSERT INTO Pais (sigla, nome) VALUES ('BR', 'Brasil');
+INSERT INTO Pais (sigla, nome) VALUES ('US', 'Estados Unidos');
+INSERT INTO Pais (sigla, nome) VALUES ('UK', 'Reino Unido');
+INSERT INTO Pais (sigla, nome) VALUES ('FR', 'França');
+INSERT INTO Pais (sigla, nome) VALUES ('AR', 'Argentina');
+
+
+CREATE TABLE Filme ( 
+titulo VARCHAR(100) NOT NULL, 
+ano INT NOT NULL, 
+resumo VARCHAR(2000) NOT NULL, 
+pais CHAR(2), 
+duracao INT, 
+avaliacao NUM, 
+PRIMARY KEY (titulo, ano), 
+FOREIGN KEY (pais) REFERENCES Pais(sigla) 
+);
+
+INSERT INTO Filme (titulo, ano, resumo, pais, duracao, avaliacao) VALUES ('Cidade de Deus', 2002, 'Two boys growing up in a violent neighborhood of Rio de Janeiro take different paths: one becomes a photographer, the other a drug dealer.', NULL, NULL, NULL);
+INSERT INTO Filme (titulo, ano, resumo, pais, duracao, avaliacao) VALUES ('Um Sonho de Liberdade', 1994, 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.', 'US', 142, 9.3);
+INSERT INTO Filme (titulo, ano, resumo, pais, duracao, avaliacao) VALUES ('Intocáveis', 2011, 'After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver.', NULL, NULL, 8.6);
+INSERT INTO Filme (titulo, ano, resumo, pais, duracao, avaliacao) VALUES ('O Filho da Noiva', 2001, 'At age 42, Rafael Belvedere is having a crisis.', 'AR', NULL, NULL);
+INSERT INTO Filme (titulo, ano, resumo, pais, duracao, avaliacao) VALUES ('Noel: Poeta da Vila', 2006, 'The biopic of Noel Rosa, one of the best brazilian poets and composers.', 'BR', 99, 6.8);
+INSERT INTO Filme (titulo, ano, resumo, pais, duracao, avaliacao) VALUES ('A Dama de Ferro', 2011, 'An elderly Margaret Thatcher talks to the imagined presence of her recently deceased husband while scenes from her past life intervene.', 'UK', 105, NULL);
+INSERT INTO Filme VALUES('ENCE: O Filme',2023, 'Um grupo de estudantes desvenda os mistérios da Ciência de Dados','BR',120,9.9); 
+
+
+CREATE TABLE Genero ( 
+nome VARCHAR(15) NOT NULL, 
+PRIMARY KEY (nome) 
+); 
+
+CREATE TABLE Artista ( 
+nome VARCHAR(60) NOT NULL, 
+sexo CHAR(1) NOT NULL, 
+PRIMARY KEY (nome) 
+CHECK (sexo IN ('F', 'M')) 
+); 
+
+CREATE TABLE FilmeGenero (
+titulofilme VARCHAR(100) NOT NULL,
+ano INT NOT NULL,
+nomegenero VARCHAR(15) NOT NULL,
+PRIMARY KEY (titulofilme, ano, nomegenero),
+FOREIGN KEY (titulofilme, ano) REFERENCES Filme(titulo,ano),
+FOREIGN KEY (nomegenero) REFERENCES Genero(nome)
+);
+
+
+CREATE TABLE FilmeElenco (
+titulofilme VARCHAR(100) NOT NULL,
+ano INT NOT NULL,
+nomeartista VARCHAR(60) NOT NULL,
+PRIMARY KEY (titulofilme, ano, nomeartista),
+FOREIGN KEY (titulofilme, ano) REFERENCES Filme(titulo,ano),
+FOREIGN KEY (nomeartista) REFERENCES Artista(nome)
+);
+
+INSERT INTO Artista VALUES('Karl Pearson', 'M'); 
+INSERT INTO Artista VALUES('Ronald Fisher', 'M'); 
+INSERT INTO Artista VALUES('Alan Turing', 'M'); 
+INSERT INTO Artista VALUES('Ada Lovelace', 'F'); 
+INSERT INTO FilmeElenco 
+VALUES('ENCE: O Filme',2023,'Karl Pearson'); 
+INSERT INTO FilmeElenco 
+VALUES('ENCE: O Filme',2023,'Ronald Fisher'); 
+INSERT INTO FilmeElenco 
+VALUES('ENCE: O Filme',2023,'Alan Turing'); 
+INSERT INTO FilmeElenco 
+VALUES('ENCE: O Filme',2023,'Ada Lovelace'); 
+
+INSERT INTO Genero VALUES('Drama'); 
+INSERT INTO Genero VALUES('Aventura'); 
+INSERT INTO Genero VALUES('Ação'); 
+INSERT INTO FilmeGenero VALUES('ENCE: O Filme',2023,'Drama'); 
+INSERT INTO FilmeGenero VALUES('ENCE: O Filme',2023,'Aventura'); 
+INSERT INTO FilmeGenero VALUES('ENCE: O Filme',2023,'Ação'); 
+
