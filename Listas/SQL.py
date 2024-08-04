@@ -1,5 +1,9 @@
 import os
 import sqlite3
+# Aluno: Nome do Aluno
+# Descrição o resultado: Retorna o limite inferior e superior das 6 classes de renda 
+# e o total de famílias de cada classe para a região brasileira desejada.
+# A região desejada é informada através de parâmtro.   
 
 # the relative file path
 # Caminho relativo da pasta que está o banco de dados
@@ -91,5 +95,6 @@ for linha in dados:
 
 arquivo=scriptdir+"/arquivo.csv" # especifica o caminho do arquivo de saída
 with open(arquivo, "w",encoding="locale") as f: # abre um arquivo de saída para escrita
+    f.write(";".join([str(cell) for cell in title]) + "\n") # escreva a saída no arquivo
     for row in dados:
         f.write(";".join([str(cell) for cell in row]) + "\n") # escreva a saída no arquivo
